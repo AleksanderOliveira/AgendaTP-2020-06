@@ -1,5 +1,5 @@
 ////////////////////////////////
-/// Inclusão das bibliotecas ///
+/// Inclusï¿½o das bibliotecas ///
 ////////////////////////////////
 #include <string>
 #include <iostream>
@@ -11,25 +11,25 @@
 	#include <mysql.h>
 #else
 	// Em outros sistemas, creio eu,
-	// é desse outro jeito
+	// ï¿½ desse outro jeito
 	#include <mysql/mysql.h>
 #endif
 
 ///////////////////
-/// Protótipos ////
+/// Protï¿½tipos ////
 ///////////////////
-void exibeMenu(); 
+void exibeMenu();
 void desconectar();
 void verCompromissos();
 void mostrarErroDoMysql();
 void adicionarCompromisso();
 
 /////////////////////////////
-/// Variáveis globais X<( ///
+/// Variï¿½veis globais X<( ///
 /////////////////////////////
 
 /**
- * Contém a conexão com o banco de dados
+ * Contï¿½m a conexï¿½o com o banco de dados
  */
 MYSQL *connexao;
 bool conectado = false;
@@ -45,7 +45,7 @@ const unsigned int EDITAR_COMPROMISSO = 3;
 const unsigned int SAIR = 4;
 
 /**
- * Função principal
+ * Funï¿½ï¿½o principal
  */
 int main(int argc, char **argv) {
 
@@ -54,17 +54,17 @@ int main(int argc, char **argv) {
 
 	exibeMenu();
 
-	// Guarda a opção escolhida
+	// Guarda a opï¿½ï¿½o escolhida
 	int opcao;
 
 	// Entra em um loop infinito perguntando
-	// o que o usuário deseja fazer
+	// o que o usuï¿½rio deseja fazer
 	while (true) {
 
-		// Pergunta a opção do usuário
+		// Pergunta a opï¿½ï¿½o do usuï¿½rio
 		std::cin >> opcao;
 
-		// Executa a ação escolhida
+		// Executa a aï¿½ï¿½o escolhida
 		switch (opcao) {
 			case ADICIONAR_COMPROMISSO:
 				adicionarCompromisso();
@@ -91,10 +91,10 @@ int main(int argc, char **argv) {
 }
 
 /**
- * Exibe um menu para o usuário
+ * Exibe um menu para o usuï¿½rio
  */
 void exibeMenu() {
-	std::cout << "Escolha uma opção:" << std::endl;
+	std::cout << "Escolha uma opï¿½ï¿½o:" << std::endl;
 	std::cout << ADICIONAR_COMPROMISSO << " - Adicionar compromisso" << std::endl;
 	std::cout << REMOVER_COMPROMISSO << " - Remover compromisso" << std::endl;
 	std::cout << MOSTRAR_COMPROMISSO << " - Mostrar compromisso" << std::endl;
@@ -103,7 +103,7 @@ void exibeMenu() {
 }
 
 /**
- * Mostra os erros que podem ocorrer na conexão
+ * Mostra os erros que podem ocorrer na conexï¿½o
  * @param mysql
  */
 void mostrarErroDoMysql(MYSQL *mysql) {
@@ -158,15 +158,15 @@ void adicionarCompromisso() {
 	std::cout << "Informe o dia:";
 	std::cin >> dia;
 
-	// Solicita o mês do compromisso
-	std::cout << "Informe o mês:";
+	// Solicita o mï¿½s do compromisso
+	std::cout << "Informe o mï¿½s:";
 	std::cin >> mes;
 
 	// Solicita o ano do compromisso
 	std::cout << "Informe o ano:";
 	std::cin >> ano;
 
-	// Solicita a descrição do compromisso
+	// Solicita a descriï¿½ï¿½o do compromisso
 	std::cout << "Descreva o compromisso:";
 	std::cin >> descricao;
 
@@ -190,7 +190,7 @@ void adicionarCompromisso() {
 
 void verCompromissos() {
 
-	// Verifica se a conexão foi realizada com sucesso
+	// Verifica se a conexï¿½o foi realizada com sucesso
 	if (!conectar()) {
 		std::cout << "Falha ao conectar ao banco de dados!" << std::endl;
 		return;

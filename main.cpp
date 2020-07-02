@@ -121,9 +121,8 @@ bool conectar() {
 	if (conectado) return true;
 
 	connexao = mysql_init(NULL);
-	if (!mysql_real_connect(connexao, "127.0.0.1", "root", "1234", "Agenda", 3306, NULL, 0)) {
+	if (!mysql_real_connect(connexao, "127.0.0.1", "root", "", "Agenda", 3306, NULL, 0)) {
 		mostrarErroDoMysql(connexao);
-
 		conectado = false;
 		return false;
 	}
@@ -172,7 +171,7 @@ void adicionarCompromisso() {
 
 	// Monta a query
 	std::string sql = "insert into Compromisso (data, descricao)values('" + ano + "-" + mes + "-" + dia + "','" + descricao + "')";
-
+	std::cout << sql << std::endl;
 	// Executa a query
 	int statusDeExecucao = mysql_query(connexao, sql.data());
 

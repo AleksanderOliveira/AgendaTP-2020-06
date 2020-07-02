@@ -4,8 +4,8 @@ Name=AgendaTP-2020-06
 Type=1
 Ver=2
 ObjFiles=
-Includes=D:\wamp64\bin\mysql\mysql8.0.18\include;D:\wamp64\bin\mysql\mysql8.0.18\include\mysql
-Libs=D:\wamp\bin\mysql\mysql8.0.18\lib;D:\wamp\bin\mysql\mysql8.0.18\bin
+Includes=D:\MySQL\include
+Libs=D:\MySQL\lib
 PrivateResource=
 ResourceIncludes=
 MakeIncludes=
@@ -140,4 +140,3 @@ Link=0
 Priority=1000
 OverrideBuildCmd=0
 BuildCmd=
-

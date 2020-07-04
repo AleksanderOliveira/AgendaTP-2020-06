@@ -23,6 +23,7 @@ void desconectar();
 void verCompromissos();
 void mostrarErroDoMysql();
 void adicionarCompromisso();
+void editarCompromisso();
 
 /////////////////////////////
 /// Variï¿½veis globais X<( ///
@@ -77,8 +78,7 @@ int main(int argc, char **argv) {
 				verCompromissos();
 				break;
 			case EDITAR_COMPROMISSO:
-				// TODO implementar
-				std::cout << "Falta implementar." << std::endl;
+				editarCompromisso();
 				break;
 		}
 
@@ -171,7 +171,6 @@ void adicionarCompromisso() {
 
 	// Monta a query
 	std::string sql = "insert into Compromisso (data, descricao)values('" + ano + "-" + mes + "-" + dia + "','" + descricao + "')";
-	std::cout << sql << std::endl;
 	// Executa a query
 	int statusDeExecucao = mysql_query(connexao, sql.data());
 
@@ -218,5 +217,72 @@ void verCompromissos() {
 		// Algo deu errado!
 		mostrarErroDoMysql(connexao);
 		std::cout << "Falha ao recuperar os registros!" << std::endl;
+	}
+	exit;
+}
+void editarCompromisso(){
+	unsigned int op;
+	std::string cod,dia,mes,ano,descricao;
+	verCompromissos();
+	std::cout<< "Digite o codigo do compromisso que deseja alterar" << std::endl;
+	std::cin>>cod;
+	std::cout<< "Deseja alterar 1- Data 2- Descrição ?";
+	std::cin>>op;
+	switch(op){
+		case 1:{
+			// Solicita o dia do compromisso
+			std::cout << "Informe o dia:";
+			std::cin >> dia;
+		
+			// Solicita o mï¿½s do compromisso
+			std::cout << "Informe o mï¿½s:";
+			std::cin >> mes;
+		
+			// Solicita o ano do compromisso
+			std::cout << "Informe o ano:";
+			std::cin >> ano;
+		
+			// Monta a query
+			std::string sql = "update Compromisso set data =('" + ano + "-" + mes + "-" + dia+"') where cod = "+cod+"";
+			std::cout << sql << std::endl;
+			// Executa a query
+			int statusDeExecucao = mysql_query(connexao, sql.data());
+		
+			// Verifica se deu tudo certo
+			if (statusDeExecucao == 0) {
+				// Deu certo!
+				std::cout << "Compromisso inserido" << std::endl;
+			} else {
+				// Algo deu errado!
+				mostrarErroDoMysql(connexao);
+				std::cout << "Falha ao inserir compromisso!" << std::endl;
+			}
+			break;
+		}
+		case 2:{
+			// Solicita a descriï¿½ï¿½o do compromisso
+			std::cout << "Descreva o compromisso:" << std::endl;
+			std::cin >> descricao;
+			// Monta a query
+			std::string sql = "update Compromisso set descricao ='"+descricao+"' where cod = '"+cod+"'";
+			std::cout << sql << std::endl;
+			// Executa a query
+			int statusDeExecucao = mysql_query(connexao, sql.data());
+		
+			// Verifica se deu tudo certo
+			if (statusDeExecucao == 0) {
+				// Deu certo!
+				std::cout << "Compromisso inserido" << std::endl;
+			} else {
+				// Algo deu errado!
+				mostrarErroDoMysql(connexao);
+				std::cout << "Falha ao inserir compromisso!" << std::endl;
+			}
+			break;
+		}
+		default:{
+			std::cout<<"Codigo inválido" << std::endl;
+			break;
+		}
 	}
 }
